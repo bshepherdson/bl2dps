@@ -4,6 +4,8 @@ CLASS({
   extendsModel: 'foam.browser.ui.BrowserView',
   requires: [
     'bl2.dps.model.Weapon',
+    'bl2.dps.ui.WeaponCitationView',
+    'bl2.dps.ui.WeaponDetailView',
     'foam.browser.BrowserConfig',
     'foam.dao.EasyDAO',
     'foam.dao.IDBDAO',
