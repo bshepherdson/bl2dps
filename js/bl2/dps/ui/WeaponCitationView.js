@@ -36,7 +36,7 @@ CLASS({
       <div id="<%= this.id %>" <%= this.cssClassAttr() %>>
         <div class="weapon-citation-row">
           <span style="font-size: 120%">
-            $$name{ model_: 'foam.ui.TextFieldView', mode: 'read-only' }
+            <%# this.data.name %>
           </span>
           <span>
             <span style="margin-right: 12px;">
@@ -44,21 +44,21 @@ CLASS({
               $$type{ mode: 'read-only' }
             </span>
             <span class="label">Level</span>
-            $$level{ model_: 'foam.ui.TextFieldView', mode: 'read-only' }
+            <%# this.data.level %>
           </span>
         </div>
         <div class="weapon-citation-row">
           <span>
             <span class="label">Cyclic</span>
-            $$dpsCyclic{ model_: 'foam.ui.TextFieldView', mode: 'read-only' }
+            <%# this.data.dpsCyclic %>
           </span>
           <span>
             <span class="label">Mag</span>
-            $$dpsSingleMag{ model_: 'foam.ui.TextFieldView', mode: 'read-only' }
+            <%# this.data.dpsSingleMag %>
           </span>
           <span>
             <span class="label">Time</span>
-            $$timePerMag{ model_: 'foam.ui.TextFieldView', mode: 'read-only' }
+            <%# this.data.timePerMag %>
           </span>
         </div>
       </div>

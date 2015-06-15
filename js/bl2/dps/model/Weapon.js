@@ -89,6 +89,7 @@ CLASS({
       name: 'realFireRate',
       hidden: true,
       documentation: 'Adjusted fire rate. Capped at 5 for Jakobs pistols.',
+      transient: true,
       dynamicValue: function() {
         this.manufacturer; this.type; this.fireRate;
         return this.manufacturer === 'JAKOBS' && this.type === 'PISTOL' ?
@@ -111,6 +112,7 @@ CLASS({
       name: 'shotsPerMag',
       mode: 'read-only',
       help: 'The number of shots (ie. notional trigger pulls) per magazine.',
+      transient: true,
       dynamicValue: function() {
         return this.magazineSize / this.ammoPerShot;
       }
@@ -120,6 +122,7 @@ CLASS({
       name: 'damagePerMag',
       mode: 'read-only',
       help: 'The total damage per magazine.',
+      transient: true,
       dynamicValue: function() {
         return this.shotsPerMag * this.damagePerShot;
       }
@@ -129,6 +132,7 @@ CLASS({
       name: 'damagePerShot',
       mode: 'read-only',
       help: 'Damage per (notional) trigger pull.',
+      transient: true,
       dynamicValue: function() {
         return this.bulletDamage * this.bulletsPerShot;
       }
@@ -138,6 +142,7 @@ CLASS({
       name: 'realTimePerMag',
       hidden: true,
       documentation: 'Internal, accurate time per magazine.',
+      transient: true,
       dynamicValue: function() {
         return Math.ceil(this.shotsPerMag) * (1 / this.realFireRate);
       }
@@ -147,6 +152,7 @@ CLASS({
       name: 'timePerMag',
       help: 'The total time required to drain a magazine. Rounds shots per mag up to the next whole number, because partial shots take as long as full ones.',
       mode: 'read-only',
+      transient: true,
       dynamicValue: function() {
         return +(Math.round(this.realTimePerMag * 100) / 100);
       }
@@ -155,6 +161,8 @@ CLASS({
       model_: 'FloatProperty',
       name: 'realDpsSingleMag',
       documentation: 'Internal, accurate DPS of a single magazine, without reloading.',
+      mode: 'read-only',
+      transient: true,
       dynamicValue: function() {
         return this.damagePerMag / this.realTimePerMag;
       }
@@ -165,6 +173,7 @@ CLASS({
       label: 'DPS (Mag)',
       mode: 'read-only',
       help: 'DPS of a single magazine, without reloading.',
+      transient: true,
       dynamicValue: function() {
         return +(Math.round(this.realDpsSingleMag * 100) / 100);
       }
@@ -175,6 +184,7 @@ CLASS({
       label: 'DPS (Cyclic)',
       mode: 'read-only',
       documentation: 'Internal, accurate cyclic DPS.',
+      transient: true,
       dynamicValue: function() {
         return this.damagePerMag / (this.realTimePerMag + this.reloadSpeed);
       }
@@ -185,6 +195,7 @@ CLASS({
       label: 'DPS (Cyclic)',
       mode: 'read-only',
       help: 'DPS of firing this weapon continuously, across many reloads.',
+      transient: true,
       dynamicValue: function() {
         return +(Math.round(this.realDpsCyclic * 100) / 100);
       }

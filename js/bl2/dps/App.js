@@ -40,6 +40,7 @@ CLASS({
           cannedQueryDAO: this.NullDAO.create(),
           listView: {
             factory_: 'foam.ui.DAOListView',
+            mode: 'read-only',
             rowView: 'bl2.dps.ui.WeaponCitationView'
           },
           innerDetailView: 'bl2.dps.ui.WeaponDetailView',
